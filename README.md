@@ -4,7 +4,7 @@ README: [中文](https://github.com/limpoxe/Android-Plugin-Framework/blob/master
 
 Android-Plugin-Framework是一个Android插件化框架，用于通过动态加载的方式免安装运行插件apk
 
-#### 最新版本: 0.0.52-snapshot
+#### 最新版本: 0.0.53-snapshot
 
 #### 项目结构
 
@@ -69,7 +69,7 @@ Android-Plugin-Framework是一个Android插件化框架，用于通过动态加�
 ```
     dependencies {
         //请务必使用@aar结尾，以中断依赖传递
-        compile('com.limpoxe.fairy:FairyPlugin:0.0.52-snapshot@aar')
+        compile('com.limpoxe.fairy:FairyPlugin:0.0.53-snapshot@aar')
         //可选，用于支持插件全局函数式服务，不使用全局函数式服务不需要添加此依赖
         //compile('com.limpoxe.support:android-servicemanager:1.0.5@aar')
     }
@@ -92,10 +92,12 @@ Android-Plugin-Framework是一个Android插件化框架，用于通过动态加�
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         //框架日志开关
-        LogUtil.setEnable(true);
+        FairyGlobal.setLogEnable(true);
         //这个方法是设置首次加载插件时, 定制loading页面的UI, 不传即默认没有loading页
         //在宿主中创建任意一个layout传进去即可
-        PluginLoader.setLoadingResId(R.layout.loading);
+        FairyGlobal.setLoadingResId(R.layout.loading);
+        //是否支持插件中使用本地html
+        FairyGlobal.setLocalHtmlenable(true);
         //初始化框架
         PluginLoader.initLoader(this);
     }
